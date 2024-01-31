@@ -1,13 +1,9 @@
-import './App.css'
-import './View/Registro.tsx'
-import Registro from './View/Registro.tsx'
+import Login from './View/Login'
 
 function App() {
-  
-
   return (
     <>
-      <Registro/>
+      <Login />       
     </>
   )
 }
