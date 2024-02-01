@@ -1,19 +1,56 @@
-export default function Home() {
-    return(
-        <>
-            <nav className="sticky top-0 w-full bg-white z-50">
-                <div className="container mx-auto flex items-center py-6 ">
-                    <div className="flex flex-grow justify-between items-center">
-                        <div className="relative flex items-center text-gray-500">
-                            <input type="text" name="search" placeholder="Buscar..."
-                                   className="mr-5 py-2 pl-10 pr-3 font-semibold text-black placeholder-gray-500 rounded-lg border-none ring-2 ring-gray-300"/>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <body className="min-h-screen w-screen bg-primary">
+import CardBook from "../Components/CardBook";
+import Navbar from "../Components/Navbar";
+import book1 from "../images/libro1.jpeg";
+import book2 from "../images/libro2.jpg";
+import book3 from "../images/libro3.jpeg";
+import book4 from "../images/libro4.jpeg";
+import book5 from "../images/libro5.png";
+import book6 from "../images/libro6.jpeg";
 
-            </body>
-        </>
-    )
+export default function Home() {
+  const booksData = [
+    {
+      imageUrl: book1,
+      title: "Harry Potter y la piedra filosofal",
+      author: "J.K. Rowling",
+    },
+    {
+      imageUrl: book2,
+      title: "Hija de las tinieblas",
+      author: "Kiersten White",
+    },
+    {
+      imageUrl: book3,
+      title: "Percy Jackson: El ladrón del rayo",
+      author: "Rick Riordan",
+    },
+    {
+      imageUrl: book4,
+      title: "Maze Runner: La cura mortal",
+      author: "Jamas Dashner",
+    },
+    {
+      imageUrl: book5,
+      title: "Dune",
+      author: "Frank Herbert",
+    },
+    {
+      imageUrl: book6,
+      title: "Los Juegos del Hambre - Trilogía",
+      author: "RBA",
+    },
+  ];
+
+  return (
+    <>
+      <Navbar />
+      <body className="min-h-screen w-screen bg-primary">
+        <div className="flex flex-wrap items-center justify-center w-full h-full p-7">
+          {booksData.map((bookData, index) => (
+            <CardBook bookData={bookData} index={index} />
+          ))}
+        </div>
+      </body>
+    </>
+  );
 }
