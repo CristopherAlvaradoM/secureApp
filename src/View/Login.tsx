@@ -1,4 +1,4 @@
-import Button from '../Components/Button';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 export default function Login() {
 
