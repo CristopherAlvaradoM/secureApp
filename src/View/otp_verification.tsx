@@ -1,6 +1,6 @@
 import Button from "../Components/Button.tsx";
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function OTPVerification() {
 
@@ -42,6 +42,20 @@ export default function OTPVerification() {
         }
     };
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const inputRefs = Array.from({ length: 5 }, () => useRef(null));
+
+    const handleInputChange = (index: number, value: string) => {
+        console.log(`Input ${index + 1}: ${value}`);
+
+        // Pasar el foco al siguiente input si hay un valor
+        if (value && index < inputRefs.length - 1) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            inputRefs[index + 1].current.focus();
+        }
+    };
+
     return (
         <>
             <div
@@ -59,21 +73,16 @@ export default function OTPVerification() {
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <div className="grid grid-cols-6 gap-20">
-                        <input type="text"
-                               className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
-                               maxLength={1}/>
-                        <input type="text"
-                               className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
-                               maxLength={1}/>
-                        <input type="text"
-                               className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
-                               maxLength={1}/>
-                        <input type="text"
-                               className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
-                               maxLength={1}/>
-                        <input type="text"
-                               className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
-                               maxLength={1}/>
+                        {[...Array(5).keys()].map((index) => (
+                            <input
+                                key={index}
+                                type="text"
+                                className="w-16 h-16 px-4 border border-gray-300 rounded-lg text-black text-center font-semibold text-3xl"
+                                maxLength={1}
+                                ref={inputRefs[index]}
+                                onChange={(e) => handleInputChange(index, e.target.value)}
+                            />
+                        ))}
                     </div>
                 </div>
 
