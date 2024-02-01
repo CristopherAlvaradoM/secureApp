@@ -1,6 +1,7 @@
 import Portada from "../images/portada.png";
 
 export default function Registro(){
+
     return(
         <>
         <div className="bg-primary w-screen h-screen">
@@ -10,6 +11,7 @@ export default function Registro(){
                 <p>Crea una cuenta</p>
                 <p className="text-xl font-medium">Comienza tu aventura</p>
               </div>
+          
             </div>
             <div className="col-span-1">
               <img src={Portada} alt="" />
