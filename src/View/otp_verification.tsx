@@ -31,6 +31,17 @@ export default function OTPVerification() {
         setReenviar(false);
     };
 
+    const tiempoRestante = () => {
+        const minutos = Math.floor(contador / 60);
+        const segundos = contador % 60;
+
+        if (contador >= 60) {
+            return `${minutos === 1 ? 'minutos' : 'minuto'}`;
+        } else {
+            return `${segundos === 1 ? 'segundo' : 'segundos'}`;
+        }
+    };
+
     return (
         <>
             <div
@@ -73,7 +84,7 @@ export default function OTPVerification() {
                         </p>
                     ) : (
                         <p className="text-md font-semibold text-gray-500">
-                            Reenviar código en {Math.floor(contador / 60)}:{contador % 60 < 10 ? `0${contador % 60}` : contador % 60} minutos
+                            Reenviar código en {Math.floor(contador / 60)}:{contador % 60 < 10 ? `0${contador % 60}` : contador % 60} {tiempoRestante()}
                         </p>
                     )}
                 </div>
