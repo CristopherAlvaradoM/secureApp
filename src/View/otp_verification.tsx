@@ -67,7 +67,15 @@ export default function OTPVerification() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <p className="text-md font-semibold text-blue-700">Reenviar código en 1:30 minutos</p>
+                    {reenviar ? (
+                        <p className="text-md font-semibold text-blue-700 cursor-pointer" onClick={handleReenviar}>
+                            Reenviar código
+                        </p>
+                    ) : (
+                        <p className="text-md font-semibold text-gray-500">
+                            Reenviar código en {Math.floor(contador / 60)}:{contador % 60 < 10 ? `0${contador % 60}` : contador % 60} minutos
+                        </p>
+                    )}
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
