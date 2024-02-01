@@ -1,4 +1,36 @@
+import Button from "../Components/Button.tsx";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+
 export default function OTPVerification() {
+
+    const navigate = useNavigate()
+    function goToHome() {
+        navigate("/home")
+    }
+
+    const [contador, setContador] = useState(90); // Inicia el contador en 90 segundos
+    const [reenviar, setReenviar] = useState(false);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            if (contador > 0) {
+                setContador((prevContador) => prevContador - 1);
+            } else {
+                setReenviar(true);
+                clearInterval(intervalId);
+            }
+        }, 1000);
+
+        return () => clearInterval(intervalId); // Limpia el intervalo al desmontar el componente
+
+    }, [contador]);
+
+    const handleReenviar = () => {
+        setContador(90);
+        setReenviar(false);
+    };
+
     return (
         <>
             <div
@@ -36,6 +68,10 @@ export default function OTPVerification() {
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <p className="text-md font-semibold text-blue-700">Reenviar código en 1:30 minutos</p>
+                </div>
+
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <Button label="Verbo jere" onClick={goToHome} />
                 </div>
 
             </div>
